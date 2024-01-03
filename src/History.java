@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 
-import javax.swing.SwingUtilities;
-
 public class History extends JFrame {
-
     Connection connection;
     JTextArea historyTextArea;
 
@@ -14,6 +11,16 @@ public class History extends JFrame {
         setTitle("History of Quiz");
         setSize(650, 650);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JLabel titleLabel = new JLabel("History");
+        titleLabel.setFont(new Font("Ink Free", Font.BOLD, 30));
+        titleLabel.setForeground(new Color(255, 255, 0));
+
+        titleLabel.setOpaque(true);                                   //opaque property for background color
+        titleLabel.setBackground(new Color(50,50,50));
+
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
 
         historyTextArea = new JTextArea();
         historyTextArea.setBackground(new Color(50, 50, 50));
@@ -55,8 +62,5 @@ public class History extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new History());
     }
 }

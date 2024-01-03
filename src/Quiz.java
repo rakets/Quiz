@@ -41,7 +41,8 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
     int result;
     int seconds = 10;
 
-    String userInput = JOptionPane.showInputDialog("Write your name: "); //вызов окна, в котором вводим имя пользователя.
+
+    String userInput = JOptionPane.showInputDialog("Write your name:"); //вызов окна, в котором вводим имя пользователя.
                                                                         // это имя помещаетс в переменную userInput
     JFrame frame = new JFrame(); //создание объекта класса JFrame. JFrame представляет собой основное окно графического интерфейса
 
@@ -104,7 +105,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
         //панель с номером вопроса
         textfield.setBounds(0, 0, 650, 50); //настройка размещения и размеров окна textfield
         textfield.setBackground(new Color(25, 25, 25)); // цвет фона панели
-//        textfield.setForeground(new Color(25, 255, 0));
         textfield.setForeground(new Color(255, 255, 0)); //цвет шрифта номера вопроса
         textfield.setFont(new Font("Ink Free", Font.BOLD, 30)); // установка шрифта тексат в окне вопроса
         textfield.setBorder(BorderFactory.createBevelBorder(1)); //создает граничный эффект в виде фаски
@@ -117,7 +117,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
         textarea.setLineWrap(true);
         textarea.setWrapStyleWord(true);
         textarea.setBackground(new Color(25, 25, 25)); // цвет панели сверху
-//        textarea.setForeground(new Color(25, 255, 0));
         textarea.setForeground(new Color(255, 255, 0)); //цвет вопроса
         textarea.setFont(new Font("MV Boli", Font.BOLD, 25)); // шрифт в панели
         textarea.setBorder(BorderFactory.createBevelBorder(1));
@@ -216,7 +215,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
         number_right.setHorizontalAlignment(JTextField.CENTER);
         number_right.setEditable(false);
 
-
         // нижнее окошко
         percentage.setBounds(225, 325, 200, 100);
         percentage.setBackground(new Color(25, 25, 25));
@@ -251,44 +249,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
         }
 
     }
-
-//    History() {
-//        //настройка окна
-//        frameHistory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frameHistory.setSize(650, 650);
-//        frameHistory.getContentPane().setBackground(new Color(50, 50, 50)); // цвет окна
-//        frameHistory.setLayout(null);
-//        frameHistory.setResizable(false);
-//
-//        //окно истории
-//        history.setBounds(0, 0, 640, 550);
-//        history.setBackground(new Color(25, 25, 25));
-//        history.setForeground(new Color(25, 255, 0));
-//        history.setFont(new Font("Ink Free", Font.BOLD, 50));
-//        history.setBorder(BorderFactory.createBevelBorder(1));
-//        history.setHorizontalAlignment(JTextField.CENTER);
-//        history.setEditable(false);
-//
-//        // кнопка Cance
-//        buttonHistory.setBounds(175, 600, 300, 100);
-//        buttonHistory.setFont(new Font("MV Boli", Font.BOLD, 35));
-//        buttonHistory.setFocusable(false);
-//        buttonHistory.addActionListener(this);
-//        buttonHistory.setText("Cance");
-//
-//        frame.add(answer_labelD);
-//        frame.add(answer_labelC);
-//        frame.add(answer_labelB);
-//        frame.add(answer_labelA);
-//        frame.add(buttonD); // четвертая кнопка
-//        frame.add(buttonC); // третья кнопка
-//        frame.add(buttonB); // вторая кнопка
-//        frame.add(buttonA); // первая кнопка
-//        frame.add(textarea);
-//        frame.add(textfield); // панель сверху
-//        frame.setVisible(true);
-//        timer.stop();
-//        nextQuestion();
 
     // метод добавления вопроса (текста) и ответов(текста) на окно
     public void nextQuestion() {
@@ -356,7 +316,7 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
         displayAnswer();
     }
 
-    // метод рестарта
+    // method restart
     public void resetQuiz() {
         Timer pause = new Timer(2000, new ActionListener() {
             @Override
@@ -374,7 +334,7 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
                 frame.remove(buttonRestart); // удаление кнопки рестарта
                 frame.remove(buttonRecord);
                 frame.remove(seconds_left);
-//                frame.remove(buttonHistory);
+                frame.remove(buttonHistory);
 
                 frame.repaint(); // восстановление цвета рамки после нажатия кнопки RESTART
 
@@ -410,7 +370,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
     }
 
     public void displayAnswer() {
-
         timer.stop();
 
         buttonA.setEnabled(false);
@@ -502,7 +461,7 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
                 preparedStatement.executeUpdate();
 
                 frame.remove(buttonRecord);
-//              frame.repaint();     //если откомментировать, то после нажатия на кнопку Record, на удаляется с экрана.
+                frame.repaint();     //если откомментировать, то после нажатия на кнопку Record, на удаляется с экрана.
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -510,7 +469,6 @@ public class Quiz implements ActionListener {  //класс с именем Quiz
     }
 
     private void showHistoryResult() {
-
         try {
             String selectQuery = "SELECT * FROM quiz_results";
             try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
